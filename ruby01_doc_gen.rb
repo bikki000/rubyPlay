@@ -2,32 +2,21 @@ require "prawn"
 
 module Document
 	class Pdf
-		def initialize()
-			puts "Object created"
-		end
-
 		def self.generate(filename, content)
-			puts "creating file"
+			puts "creating #{filename}.pdf"
 			Prawn::Document.generate(filename) do
 				text content
 			end
+			puts "#{filename}.pdf created"
 		end
 	end
 
 	class Plain_text
-		def initialize()
-			puts "Object created"
-		end
 		def self.generate(filename, content)
-			puts "creating file"
+			puts "creating #{filename}.txt"
 			file = open(filename, 'w')
 			file.write(content)
+			puts "#{filename}.txt created"
 		end
 	end
-	def generate(filename, content)
-		puts "creating file"
-		file = open(filename, 'w')
-		file.write(content)
-	end
-
 end
