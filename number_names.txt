@@ -1,0 +1,12 @@
+numeric 1 2 3 4 5 6 7 8 9 10
+english one two three four five six seven eigth nine ten
+hindi ek do teen char panch cheh saat aath nao das
+german eins zwei drei vier funf sechs sieben acht neun zehn
+french un deux trois quatre cinq six sept huit neuf dix
+spanish uno dos tres cuotro cinco seis siete ocho nueve diez
+latin unus duo tres quattuor quinque sex septem octo novem decem
+greek alpha beta gamma delta epsilon digamma zeta eta theta iota
+
+
+
+
