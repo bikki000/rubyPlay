@@ -6,14 +6,6 @@ numbers = file.read.split("\n").map do |numbers|
 	numbers = numbers.chomp.split(" ")
 end
 
-# numbers.each do |number|
-# 	number.each do |number|
-# 		print "#{number} "
-# 	end
-# 	puts ""
-# end
-
-
 def get_index_of(key, numbers)
 	numbers.each_with_index do |numbers, rowIndex|
 		if numbers.include?(key)
