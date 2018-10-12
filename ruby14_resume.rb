@@ -22,20 +22,39 @@ class Resume
 
 	attr_accessor :name, :address, :e_mail, :contact_number, :objective, :experiences, :qualifications, :skills, :courses 
 
-	def initialize(name, address, e_mail, contact_number, objective, experiences, qualifications, skills, courses)
-		@name = name;
-		@address = address
-		@e_mail = e_mail
-		@contact_number = contact_number
-		@objective = objective
+	def initialize(resume_fields)
+		@name = resume_fields[:name]
+		@address = resume_fields[:address]
+		@e_mail = resume_fields[:e_mail]
+		@contact_number = resume_fields[:contact_number]
+		@objective = resume_fields[:objective]
+
 		@experiences = []
-		experiences.each { |experience| @experiences << Experience.new(experience) }
+		resume_fields[:experiences].each { |experience| @experiences << Experience.new(experience) }
+
 		@qualifications = []
-		qualifications.each { |qualification| @qualifications << Qualification.new(qualification)}
-		@skills = Skill.new(skills)
+		resume_fields[:qualifications].each { |qualification| @qualifications << Qualification.new(qualification)}
+
+		@skills = []
+		resume_fields[:skills].each {|skill| @skills << Skill.new(skill)}
+
 		@courses = []
-		courses.each { |course| @courses << Course.new(course)}
+		resume_fields[:courses].each { |course| @courses << Course.new(course)}
 	end
+	# def initialize(name, address, e_mail, contact_number, objective, experiences, qualifications, skills, courses)
+	# 	@name = name;
+	# 	@address = address
+	# 	@e_mail = e_mail
+	# 	@contact_number = contact_number
+	# 	@objective = objective
+	# 	@experiences = []
+	# 	experiences.each { |experience| @experiences << Experience.new(experience) }
+	# 	@qualifications = []
+	# 	qualifications.each { |qualification| @qualifications << Qualification.new(qualification)}
+	# 	@skills = Skill.new(skills)
+	# 	@courses = []
+	# 	courses.each { |course| @courses << Course.new(course)}
+	# end
 
 	def to_csv_this elements
 		elements_in_csv = ""
@@ -53,12 +72,16 @@ class Resume
 		end
 	end
 
-	def to_csv
+	def to_csv_s
 		resume_in_csv = ""
 		instance_variables.each do |instance_variable|
-			resume_in_csv = resume_in_csv + "\"" + to_csv_this(instance_variable_get(instance_variable)) + "\","
+			resume_in_csv = resume_in_csv + to_csv_this(instance_variable_get(instance_variable)) + ","
 		end
 		resume_in_csv[0..-2]
+	end
+
+	def to_csv_a
+		to_csv_s.split(",")
 	end
 
 	def to_s
@@ -97,8 +120,8 @@ courses = [
 	["C#", "Naresh IT", "3 Month"]
 ]
 
-resume = Resume.new("Tanveer", "Bhubaneswar", "tnvr000@gmail.com", "8594976909", 
-	"to grow", exps, qualifications, skills, courses)
+# resume = Resume.new("Tanveer", "Bhubaneswar", "tnvr000@gmail.com", "8594976909", 
+# 	"to grow", exps, qualifications, skills, courses)
 # resume.to_s.each do |field|
 # 	puts field.to_s
 # 	puts ""
@@ -107,4 +130,4 @@ resume = Resume.new("Tanveer", "Bhubaneswar", "tnvr000@gmail.com", "8594976909",
 # puts resume.to_csv_this(resume.name)
 
 # puts resume.skills.class
-# puts resume.to_csv
+# p resume.to_csv_a

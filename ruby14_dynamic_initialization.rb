@@ -1,7 +1,7 @@
 module Dynamic_Property
 	def initialize(args)
-		args.each_with_index do |arg, i|
-			instance_variable_set("@iv#{i}", arg)
+		args.each do |key, value|
+			instance_variable_set("@#{key}", value)
 		end
 	end
 
@@ -15,7 +15,7 @@ module Dynamic_Property
 	end
 
 	def to_s
-		to_a.join(" ")
+		to_a.join(", ")
 	end
 
 	# def self.included(base) # built-in Ruby hook for modules
